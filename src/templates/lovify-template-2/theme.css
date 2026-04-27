@@ -1,0 +1,183 @@
+/* lovify-template-2 — full-bleed responsive shell, cream + dark.
+ * Tokens scoped to .lt2-root so this template's styles never leak into
+ * other templates rendered on the same page (e.g. admin gallery
+ * thumbnails or the Preview dialog).
+ */
+
+.lt2-root {
+  --lt2-bg: #faf6ef;
+  --lt2-fg: #1a1611;
+  --lt2-muted: #7a6f60;
+  --lt2-card: #f3ece1;
+  --lt2-card-soft: #f7f1e6;
+  --lt2-border: #e5dccb;
+  --lt2-cta-bg: #1f1813;
+  --lt2-cta-fg: #ffffff;
+  --lt2-accent: #b9805a;
+  --lt2-radius: 18px;
+  --lt2-radius-pill: 9999px;
+  font-family: 'Gilroy', var(--font-plus-jakarta), 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--lt2-bg);
+  color: var(--lt2-fg);
+  min-height: 100%;
+}
+
+.lt2-root * {
+  box-sizing: border-box;
+}
+
+.lt2-headline {
+  font-weight: 800;
+  letter-spacing: -0.012em;
+  line-height: 1.08;
+}
+
+.lt2-cta {
+  background: var(--lt2-cta-bg);
+  color: var(--lt2-cta-fg);
+  border-radius: var(--lt2-radius-pill);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform 140ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 120ms ease, box-shadow 140ms ease;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 24px -12px rgba(31, 24, 19, 0.35);
+}
+
+.lt2-cta:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 14px 32px -10px rgba(31, 24, 19, 0.45);
+}
+
+.lt2-cta:active:not(:disabled) {
+  transform: scale(0.975);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 4px 12px -8px rgba(31, 24, 19, 0.3);
+  transition-duration: 80ms;
+}
+
+.lt2-cta:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.lt2-card {
+  background: var(--lt2-card);
+  border-radius: var(--lt2-radius);
+  border: 1px solid var(--lt2-border);
+}
+
+.lt2-row {
+  background: #ffffff;
+  border: 1px solid var(--lt2-border);
+  border-radius: 12px;
+  transition: border-color 150ms ease, background 150ms ease, transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 150ms ease;
+}
+
+.lt2-row:hover:not([data-selected='true']):not(:disabled) {
+  border-color: rgba(31, 24, 19, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -6px rgba(31, 24, 19, 0.1);
+}
+
+.lt2-row:active:not(:disabled) {
+  transform: scale(0.985);
+  transition-duration: 80ms;
+}
+
+.lt2-row[data-selected='true'] {
+  background: var(--lt2-card-soft);
+  border-color: var(--lt2-fg);
+  box-shadow: 0 0 0 1px var(--lt2-fg);
+}
+
+/* Selection indicator — matches BetterMe exactly:
+ * unchecked: white circle with a medium-grey border
+ * checked: solid dark circle with white check inside */
+.lt2-radio,
+.lt2-check {
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  border: 1.5px solid #c8c0b4;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+
+.lt2-check {
+  border-radius: 8px;
+}
+
+.lt2-radio[data-checked='true'],
+.lt2-check[data-checked='true'] {
+  background: var(--lt2-fg);
+  border-color: var(--lt2-fg);
+  color: #ffffff;
+}
+
+.lt2-icon-btn {
+  background: transparent;
+}
+
+/* Progress bar — full-width flush line at the bottom of the header.
+ * `rounded-none` can be added in JSX to override the default radius. */
+.lt2-progress-track {
+  height: 6px;
+  background: var(--lt2-border);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.lt2-progress-fill {
+  height: 100%;
+  background: var(--lt2-fg);
+  transition: width 600ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: width;
+}
+
+/* Page-enter animation — fires on every hard navigation (Next.js App Router
+ * mounts a fresh DOM node per page, so CSS animations always retrigger).
+ * Framer-motion initial/animate can be skipped by SSR hydration; @keyframes
+ * cannot be. All step content inherits this through the wrapper div. */
+@keyframes lt2-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lt2-page-enter {
+  animation: lt2-fade-up 0.32s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+/* Staggered children — apply to direct children of the option list */
+@keyframes lt2-fade-up-item {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lt2-stagger > * {
+  animation: lt2-fade-up-item 0.24s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+.lt2-stagger > *:nth-child(1)  { animation-delay: 0.08s; }
+.lt2-stagger > *:nth-child(2)  { animation-delay: 0.13s; }
+.lt2-stagger > *:nth-child(3)  { animation-delay: 0.18s; }
+.lt2-stagger > *:nth-child(4)  { animation-delay: 0.23s; }
+.lt2-stagger > *:nth-child(5)  { animation-delay: 0.28s; }
+.lt2-stagger > *:nth-child(6)  { animation-delay: 0.33s; }
+.lt2-stagger > *:nth-child(7)  { animation-delay: 0.38s; }
+.lt2-stagger > *:nth-child(8)  { animation-delay: 0.43s; }
+.lt2-stagger > *:nth-child(9)  { animation-delay: 0.48s; }
+.lt2-stagger > *:nth-child(10) { animation-delay: 0.53s; }
+
+/* Override globals.css `bg-background` on body — that Tailwind base rule
+ * uses HSL vars that resolve to white outside the phone-frame template.
+ * We must win with higher specificity or `!important` because the base
+ * layer runs before utilities and our .lt2-root rule. */
+body:has(.lt2-root) {
+  background: #faf6ef !important;
+}
+
+html:has(.lt2-root) {
+  background: #faf6ef;
+}

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "general",
+      "label": "General",
+      "description": "Gender and general-purpose portraits."
+    },
+    {
+      "id": "lovify-avatar",
+      "label": "Lovify Avatar",
+      "description": "Lovify branded character avatars."
+    }
+  ],
+  "assets": [
+    { "key": "general/man.svg",     "category": "general", "label": "Man",       "alt": "Male portrait" },
+    { "key": "general/woman.svg",   "category": "general", "label": "Woman",     "alt": "Female portrait" },
+    { "key": "general/woman-2.svg", "category": "general", "label": "Woman 2",   "alt": "Female portrait 2" },
+    { "key": "general/other.jpg",   "category": "general", "label": "Other",     "alt": "Other gender" },
+    { "key": "lovify-avatar/lovify-cool.png",   "category": "lovify-avatar", "label": "Lovify Cool",   "alt": "Lovify cool avatar" },
+    { "key": "lovify-avatar/lovify-study.png",  "category": "lovify-avatar", "label": "Lovify Study",  "alt": "Lovify study avatar" },
+    { "key": "lovify-avatar/lovify-music.png",  "category": "lovify-avatar", "label": "Lovify Music",  "alt": "Lovify music avatar" },
+    { "key": "lovify-avatar/lovify-dj.png",     "category": "lovify-avatar", "label": "Lovify DJ",     "alt": "Lovify DJ avatar" },
+    { "key": "lovify-avatar/lovify-globe.png",  "category": "lovify-avatar", "label": "Lovify Globe",  "alt": "Lovify globe avatar" }
+  ]
+}
